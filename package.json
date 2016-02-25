@@ -1,0 +1,25 @@
+{
+  "name": "dimebox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/dimebox",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ledif/dimebox.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ledif/dimebox/issues"
+  },
+  "homepage": "https://github.com/ledif/dimebox#readme",
+  "dependencies": {
+    "js-yaml": "^3.5.3",
+    "moment": "^2.11.2",
+    "underscore": "^1.8.3",
+    "yargs": "^4.2.0"
+  }
+}
