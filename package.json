@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "dimebox": "./bin/dimebox"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ledif/dimebox.git"
@@ -17,6 +20,8 @@
   },
   "homepage": "https://github.com/ledif/dimebox#readme",
   "dependencies": {
+    "chalk": "^1.1.1",
+    "cli-table": "^0.3.1",
     "js-yaml": "^3.5.3",
     "moment": "^2.11.2",
     "underscore": "^1.8.3",
