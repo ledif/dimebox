@@ -1,6 +1,6 @@
 Getting started
 ===================
-This document should provide a simple example to get up and running with dimebox to perform a simple experimental set up of an MPI program
+This document should provide a simple example to get up and running with dimebox to perform a simple experimental setup of an MPI program
 
 Initialization
 ----
