@@ -1,0 +1,13 @@
+name: g500-weak
+desc: Weak scaling with scale 11 per processor
+
+p: [1, 2, 4, 8, 16, 32, 64]
+
+optargs: 
+  k: [0, 1]
+
+weakargs:
+  scale: 11 + Math.log2(p)
+   
+cmds:
+  - g500: ./g500 $scale 16 $k
