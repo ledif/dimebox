@@ -1,0 +1,13 @@
+name: diameter
+desc: This one should work now
+
+p: [16, 32]
+
+optargs: 
+  tau: [1, 16, 64, 256, 4096]
+  k: [16, 32]
+  r: [0.0, 0.2, 0.4, 0.8, 1.0]
+   
+cmds:
+  - stats: ./stats 1048576 4 $r $tau $k 1 0
+  - perf: ./perf 1048576 4 $r $tau $k 1 0
