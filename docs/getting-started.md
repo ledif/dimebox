@@ -18,9 +18,9 @@ This will create the directory structure for your experimental setup:
 │   └── simple.yml
 ```
 
-The ```jobs``` directory will store all of the generated job files and the ```results``` directory will store the output from your jobs' execution. Each experiment is defined by a YAML file which gives various configuration options, such as the number or processor counts, commands to be run in each job and a list of parameters to perform an exhaustive study of.
+The ```jobs``` directory will store all of the generated job files and the ```results``` directory will store the output from your jobs' execution. Each experiment is defined by a YAML file (expfile) which gives various configuration options, such as the number or processor counts, commands to be run in each job and a list of parameters to perform an exhaustive study of.
 
-In our example, our YAML configuration is simple:
+In our example, our expfile is simple:
 ```
 name: heat
 desc: Heat equation for various processor counts
@@ -63,7 +63,7 @@ dimebox submit HEAD
 ```
 Here, the keyword HEAD is a special epoch representing the last generated experiment. Our jobs should be submitted to the batch submission system and be queued for future processing.
 
-All of the results files should be stored in the ```results``` directory for the given epoch. There will be a result file for every combination of processor count, optional argument and command specified in the YAML file. In addition, each job will print its standard output and standard error to special directories in the epoch for diagnosing errors.
+All of the results files should be stored in the ```results``` directory for the given epoch. There will be a result file for every combination of processor count, optional argument and command specified in the expfile. In addition, each job will print its standard output and standard error to special directories in the epoch for diagnosing errors.
 
 After some time, our jobs will have finished and populated the results directory:
 ```
