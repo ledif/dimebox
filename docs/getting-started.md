@@ -1,6 +1,6 @@
 Getting started
 ===================
-This document should provide a simple example to get up and running with dimebox to perform a simple experimental setup of an MPI program
+This document will provide a simple example to get up and running with dimebox to perform a simple experimental setup of an MPI program.
 
 Initialization
 ----
@@ -51,7 +51,8 @@ This command will have generated job files in our jobs folder in a specific epoc
 │       ├── heat-32.job
 │       ├── heat-4.job
 │       ├── heat-8.job
-│       └── run.yml
+│       ├── run.yml
+│       └── vc.yml
 ├── results
 └── simple.yml
 ```
@@ -76,7 +77,6 @@ After some time, our jobs will have finished and populated the results directory
 │       ├── heat-32
 │       ├── heat-4
 │       ├── heat-8
-│       ├── run.yml
 │       ├── stderr
 │       │   ├── heat-1.131693.sdb.err
 │       │   ├── heat-16.131694.sdb.err
