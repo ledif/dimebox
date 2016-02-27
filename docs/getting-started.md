@@ -120,6 +120,12 @@ Expected:     4
 Files:        0
 Failed:       0
 
+Experimental setup: 
+name: heat
+desc: Changing initial condition to 98.
+p: [1, 2, 4, 128]
+cmds: [{heat: ./heat}]
+
 Random job:  /mnt/lustre/lus0/afidel/testbed/experiments/jobs/20160227-113909/heat-2.job
 
 #PBS -l mppwidth=2
