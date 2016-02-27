@@ -28,7 +28,7 @@ dimebox generate experiments/example.yml
 This will generate jobs for the example experiment.
 
 ```
-dimebox submit
+dimebox submit HEAD
 ```
 
 Submit all of the jobs just generated to the batch system to be queued and processed.
