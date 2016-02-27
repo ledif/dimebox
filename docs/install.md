@@ -1,7 +1,10 @@
-Install
-===
+Requirements
+---
+Node.js is required for dimebox. Confirmed working is v4.3.1.
 
-Installing this tool is fairly straightforward:
+Install
+---
+Installing the tool is fairly straightforward:
 
 ```
 npm install
