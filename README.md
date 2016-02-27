@@ -1,4 +1,6 @@
 # dimebox
+[![Build Status](https://travis-ci.org/ledif/dimebox.svg?branch=master)](https://travis-ci.org/ledif/dimebox)
+
 Create, launch and monitor batch jobs in high performance computing environments. Written in Node.js.
 
 Getting Started
