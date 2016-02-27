@@ -1,15 +1,11 @@
 # dimebox
-Create, launch and monitor batch jobs in high performance computing environments.
+Create, launch and monitor batch jobs in high performance computing environments. Written in Node.js.
 
-Requires
-------
- - node.js
-
-
-Traditional installation
-```
-npm install
-```
+Getting Started
+---
+For a quick overview of how to get started read the following.
+* [Installing](docs/install.md)
+* [Getting started](docs/getting-started.md)
 
 Usage
 ------
@@ -32,3 +28,5 @@ dimebox submit HEAD
 ```
 
 Submit all of the jobs just generated to the batch system to be queued and processed.
+
+
