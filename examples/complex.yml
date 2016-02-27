@@ -9,5 +9,5 @@ optargs:
   r: [0.0, 0.2, 0.4, 0.8, 1.0]
 
 cmds:
-  - stats: ./stats 1048576 4 $r $tau $k 1 0
-  - perf: ./perf 1048576 4 $r $tau $k 1 0
+  stats: ./stats 1048576 4 $r $tau $k 1 0
+  perf: ./perf 1048576 4 $r $tau $k 1 0

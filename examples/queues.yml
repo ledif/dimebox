@@ -8,4 +8,4 @@ q:
   big: 512
 
 cmds:
-  - foo: ./bar
+  foo: ./bar

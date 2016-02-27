@@ -10,4 +10,4 @@ weakargs:
   scale: 11 + Math.log2(p)
    
 cmds:
-  - g500: ./g500 $scale 16 $k
+  g500: ./g500 $scale 16 $k

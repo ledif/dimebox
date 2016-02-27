@@ -28,7 +28,7 @@ desc: Heat equation for various processor counts
 p: [1, 2, 4, 8, 16, 32]
 
 cmds:
-  - heat: ./heat
+  heat: ./heat
 ```
 
 Generation
@@ -124,7 +124,7 @@ Experimental setup:
 name: heat
 desc: Changing initial condition to 98.
 p: [1, 2, 4, 128]
-cmds: [{heat: ./heat}]
+cmds: {heat: ./heat}
 
 Random job:  /mnt/lustre/lus0/afidel/testbed/experiments/jobs/20160227-113909/heat-2.job
 
