@@ -109,7 +109,67 @@ This will print a list of your experiments along with a small overview for each,
 │ 20160225-124457 │ 6     │ 6     │ 0     │ Heat equation for various processor counts                                                         │
 └─────────────────┴───────┴───────┴───────┴────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
-In addition, summarizing an individual epoch will provide the YAML file that was used to generate the jobs, giving you a look into the parameters that were used to run the experiments.
+In addition, summarizing an individual epoch will provide the YAML file that was used to generate the jobs, giving you a look into the parameters that were used to run the experiments. It will also provide a random job to examine what was actually run, along with any version control information for reproducibility.
+
+```
+$ dimebox summary HEAD
+Description:  Changing initial condition to 98.
+Epoch:        20160227-113909
+Expected:     4
+Files:        0
+Failed:       0
+
+Random job:  /mnt/lustre/lus0/afidel/testbed/experiments/jobs/20160227-113909/heat-2.job
+
+#PBS -l mppwidth=2
+#PBS -l mppnppn=32
+#PBS -l walltime=00:30:00
+#PBS -N heat-2
+#PBS -e experiments/results/20160227-113909/stderr/heat-2.$PBS_JOBID.err 
+#PBS -o experiments/results/20160227-113909/stdout/heat-2.$PBS_JOBID.out 
+#PBS -V 
+
+MPIRUN="aprun -n 2"
+
+
+cd /mnt/lustre/lus0/afidel/testbed
+
+$MPIRUN ./heat &> experiments/results/20160227-113909/heat-2
+
+Version control: git
+commit:  4b8d026af9f84b1cac83f9cc0e78f709bb2c3d90
+
+remotes:  origin  git@github.tamu.edu:adamfidel/heat.git (fetch)
+origin  git@github.tamu.edu:adamfidel/heat.git (push)
+
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+# modified:   heat_mpi.c
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+# experiments/
+# heat
+no changes added to commit (use "git add" and/or "git commit -a")
+
+diff --git a/heat_mpi.c b/heat_mpi.c
+index 6349c1d..fda35a5 100644
+--- a/heat_mpi.c
++++ b/heat_mpi.c
+@@ -444,7 +444,7 @@ double initial_condition ( double x, double time )
+ {
+   double value;
+ 
+-  value = 95.0;
++  value = 98.0;
+ 
+   return value;
+ }
+```
 
 > **Note:** In the future, other information will be provided including the git commit hash for the code used to compile the executable (along with a diff of the uncommitted changes) along with the binary itself for true reproducibility.
 
