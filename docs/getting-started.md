@@ -172,7 +172,7 @@ index 6349c1d..fda35a5 100644
  }
 ```
 
-> **Note:** In the future, other information will be provided including the git commit hash for the code used to compile the executable (along with a diff of the uncommitted changes) along with the binary itself for true reproducibility.
+> **Note:** In the future, the binary itself will be included for true reproducibility.
 
 More complex examples
 ---
