@@ -197,8 +197,8 @@ optargs:
   r: [0.0, 0.2, 0.4, 0.8, 1.0]
    
 cmds:
-  - stats: ./stats 1048576 4 $r $tau $k 1 0
-  - perf: ./perf 1048576 4 $r $tau $k 1 0
+  stats: ./stats 1048576 4 $r $tau $k 1 0
+  perf: ./perf 1048576 4 $r $tau $k 1 0
 
 ```
 In this example, we have a large amount of parameters that we would like to test. There are 10 processor counts, three optional arguments (two of which have 5 choices and one that has 7 choices) and two commands to run. This gives a total of 3500 configurations. Imagine having to manage the job creation, submission and summarization for this experiment alone!
