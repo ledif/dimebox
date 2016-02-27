@@ -1,0 +1,11 @@
+name: queue-change
+desc: Testing queue changes at discrete intervals
+
+p: [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+q:
+  small: 16
+  med: 128
+  big: 512
+
+cmds:
+  - foo: ./bar
