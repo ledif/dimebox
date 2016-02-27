@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ledif/dimebox#readme",
   "dependencies": {
     "chalk": "^1.1.1",
+    "check-types": "^6.0.0",
     "cli-table": "^0.3.1",
     "js-yaml": "^3.5.3",
     "loglevel": "^1.4.0",
