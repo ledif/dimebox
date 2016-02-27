@@ -102,13 +102,13 @@ dimebox summary
 ```
 This will print a list of your experiments along with a small overview for each, including when it was generated, a description of the experiment, how many results are expected, how many were found and how many failed.
 ```
-┌─────────────────┬───────┬───────┬───────┬────────────────────────────────────────────────────────────────────────────────────────────────────┐
-│ Epoch           │ #     │ files │ fail  │ Description                                                                                        │
-│ 20160227-113909 │ 4     │ 0     │ 0     │ Changing initial condition to 98.                                                                  │
-│ 20160225-125008 │ 4     │ 4     │ 4     │ Introducing a bug for test purposes                                                                │
-│ 20160225-124722 │ 1     │ 1     │ 0     │ Only 128 processors                                                                                │
-│ 20160225-124457 │ 6     │ 6     │ 0     │ Heat equation for various processor counts                                                         │
-└─────────────────┴───────┴───────┴───────┴────────────────────────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────┬───────┬───────┬───────┬─────────────────────────────────────────────┐
+│ Epoch           │ #     │ files │ fail  │ Description                                 │
+│ 20160227-113909 │ 4     │ 0     │ 0     │ Changing initial condition to 98.           │
+│ 20160225-125008 │ 4     │ 4     │ 4     │ Introducing a bug for test purposes         │
+│ 20160225-124722 │ 1     │ 1     │ 0     │ Only 128 processors                         │
+│ 20160225-124457 │ 6     │ 6     │ 0     │ Heat equation for various processor counts  │
+└─────────────────┴───────┴───────┴───────┴─────────────────────────────────────────────┘
 ```
 In addition, summarizing an individual epoch will provide the YAML file that was used to generate the jobs, giving you a look into the parameters that were used to run the experiments. It will also provide a random job to examine what was actually run, along with any version control information for reproducibility.
 
