@@ -1,0 +1,54 @@
+const expect = require('chai').expect,
+      _ = require('underscore'),
+      yaml = require('js-yaml')
+      jobs = require('../lib/generate/jobs')
+
+function structuredJobs(jobs) {
+  return _.map(jobs, job => {
+    return {
+      filename: job.filename,
+      contents: yaml.safeLoad(job.contents)
+    }
+  })
+}
+
+const tmpl = require('../lib/machine/debug').template
+const exp = { name: '-', wall: '-', desc: '-', p: [1, 2, 4, 8, 16], optargs: {k: [0, 1], q: ['a', 'b', 'c']} }
+const epoch = '20160101-000000'
+
+describe('trivial generateJobs', function(){
+  it('number of jobs equal to product of optargs and p', function(){
+     const j = jobs.generateJobs(tmpl, exp, epoch)
+     expect(j).to.have.length(5*2*3);
+  });
+
+  it('jobs is array of objects', function(){
+     const j = jobs.generateJobs(tmpl, exp, epoch)
+     expect(j).to.be.a('array');
+     
+     j.map(job => {
+       expect(job).to.have.all.keys('filename', 'contents')
+     })
+  });
+
+  it('jobs have filenames and are not empty', function(){
+     const j = jobs.generateJobs(tmpl, exp, epoch)
+     j.map(job => {
+       expect(job.filename).to.have.length.least(1)
+       expect(job.contents).to.have.length.least(1)
+     })
+  });
+})
+
+describe('simple generateJobs', function(){
+  it('p is same as the filename and exp', function(){
+     const js = structuredJobs(jobs.generateJobs(tmpl, exp, epoch))
+     js.map(j => {
+       const job = j.contents
+       const filename = j.filename.split('-')
+       const pFromFile = Number(filename[filename.length-1].split('.')[0])
+       expect(job.p).to.be.equal(pFromFile)
+       expect(job.p).to.be.oneOf(exp.p)
+     });
+  });
+})
