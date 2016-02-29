@@ -33,7 +33,7 @@ Tags
 ---
 Sometimes, executables output results for what would be considered separate operations. For example, an executable might test two different algorithms. In this case, the outputs can be tagged and parsing will only return results for a given tag.
 
-The phrase for each key-value pair would then be changed to ```dbx.kv.tag key:value`
+The phrase for each key-value pair would then be changed to ```dbx.kv.tag key:value```
 
 When invoking parse, the specific tag can be specified from the command line:
 ```
