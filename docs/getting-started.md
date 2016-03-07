@@ -180,6 +180,12 @@ index 6349c1d..fda35a5 100644
 
 > **Note:** In the future, the binary itself will be included for true reproducibility.
 
+Parsing
+---
+In addition, dimebox can be used to parse the results for experiments into a standard row-oriented format with the ```dimebox parse``` command.
+
+See [parsing.md](parsing.md) for more information.
+
 More complex examples
 ---
 
