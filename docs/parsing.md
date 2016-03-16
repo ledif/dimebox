@@ -46,7 +46,7 @@ Parsers
 Parsing can be customized to extract information from output files. A parser is a small JavaScript module that exports a single a function that receives a line from a file and outputs a key-value pair for that line, or false if that line does not contain any useful information.
 
 A small example that extracts lines that contain the special phrase ```dbx.kv``` would look like the following:
-```
+```javascript
 module.exports = line => {
   if (!line.match(/^dbx.kv/))
     return false
