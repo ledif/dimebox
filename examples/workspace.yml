@@ -1,0 +1,11 @@
+name: isolated_jobs
+desc: Running jobs in isolated workspaces
+
+p: [1, 2, 4, 8, 16, 32]
+
+# create a link to the exe 'iso' in workspace
+workspace:
+  links: [iso]
+
+cmds:
+  iso: ./iso
