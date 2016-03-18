@@ -191,7 +191,7 @@ More complex examples
 
 The previous example was fairly straightforward, but it is possible to create an experiment set that contains a large amount of parameter exploration:
 
-```
+```yml
 name: complex
 desc: Testing an exhaustive study of parameters
 
@@ -208,3 +208,23 @@ cmds:
 
 ```
 In this example, we have a large amount of parameters that we would like to test. There are 10 processor counts, three optional arguments (two of which have 5 choices and one that has 7 choices) and two commands to run. This gives a total of 3500 configurations. Imagine having to manage the job creation, submission and summarization for this experiment alone!
+
+Workspaces
+---
+
+Sometimes, a program writes output or temporary files to the directory in which the program is run. When multiple jobs with the same program execute concurrently, interference will result in incorrect behavior.
+
+It is possible to set up seperate isolated workspaces for each job using the workspace field in an expfile. Consider the following experiment:
+
+```yaml
+name: isolated_jobs
+
+p: [1, 2, 4, 8, 16, 32]
+
+workspace:
+  links: [myexe]
+
+cmds:
+  foo: ./myexe
+  ```
+When using ```dimebox generate```, separate directories will be created in ```experiments/workspaces/$epoch/$jobname```. In each directory, symbolic links will be created for executables listed in the ```links``` field, along with a symbolic link to the top-level experiments directory for output to be correctly written. When each job is run, the first thing it will do is change directory do its own workspace and execute the program in isolation.
