@@ -23,13 +23,14 @@ A question you may have is "I already have my own scripts; why do I need this cr
 
    Experiments in dimebox are described using a platform-independent experiment file. This makes it trivial to take an experiment that was designed on one machine to easily be run on an entirely different machine. No need to write a machine-specific script for generating new job files.
 
-3. **Reproducibility**
+3. **Full featured**
+
+   Out of the box support for features that are tedious to implement by hand, such as throttled job submission and setting up isolated working directories for each job.
+   
+4. **Reproducibility**
 
    One of the cornerstones of experimental science is the ability to reproduce one's experiments. Dimebox provides all of the necessary information to reproduce any given experiment, including version control information (along with diffs) of the code used to compile the binary, the parameters used for the experiments and the job files themselves. In the future, the binary will also be included for even deeper reproducibility capabilities.
 
-4. **Full featured**
-
-   Out of the box support for features that are tedious to implement by hand, such as throttled job submission and setting up isolated working directories for each job.
   
 Usage
 ------
