@@ -12,7 +12,7 @@ desc: Testing various parameters of k on quality of result
 ```
 The name field is used when computing each job name, as well as the names of the job files. The name should not contain any characters that are unwieldy to deal with in filenames, such as spaces and tabs.
 
-The description field allows the user to give a more detailed description about the kind of experiment that will be run. This is an opportunity to provide detail at high level about what parameters are used, what changes to the code were made, and other information that will be helpful when looking at how this experiment differes from the others that have run. This field's so purpose is to make it easy for the user to understand the context of this experiment when returning to it later.
+The description field allows the user to give a more detailed description about the kind of experiment that will be run. This is an opportunity to provide detail at high level about what parameters are used, what changes to the code were made, and other information that will be helpful when looking at how this experiment differs from the others that have run. This field's sole purpose is to make it easy for the user to understand the context of this experiment when returning to it later.
 
 Processor counts
 ---
