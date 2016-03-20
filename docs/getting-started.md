@@ -18,10 +18,11 @@ This will create the directory structure for your experimental setup:
 │   └── simple.yml
 ```
 
-The ```jobs``` directory will store all of the generated job files and the ```results``` directory will store the output from your jobs' execution. Each experiment is defined by a YAML file (expfile) which gives various configuration options, such as the number of processor counts, commands to be run in each job and a list of parameters to perform an exhaustive study of.
+The ```jobs``` directory will store all of the generated job files and the ```results``` directory will store the output from your jobs' execution. Each experiment is defined by a YAML file (expfile) which gives various configuration options, such as the number of processor counts, commands to be run in each job and a list of parameters to perform an exhaustive study of. See [expfile.md](expfile.md) for more information.
+
 
 In our example, our expfile is simple:
-```
+```yml
 name: heat
 desc: Heat equation for various processor counts
 
