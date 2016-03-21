@@ -8,6 +8,7 @@ Getting Started
 For a quick overview of how to get started read the following.
 * [Installing](docs/install.md)
 * [Getting started](docs/getting-started.md)
+* [Experiment files](docs/expfile.md)
 
 Why Use Dimebox
 ---
