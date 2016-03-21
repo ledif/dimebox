@@ -94,6 +94,9 @@ After some time, our jobs will have finished and populated the results directory
 │           └── heat-8.131698.sdb.out
 
 ```
+
+> *Note* It's possible to submit jobs in a way that only k jobs are considered for scheduling at a time. Use `dimebox submit --stagger --batch=k` to enable this feature.
+
 Summarization
 ---
 Keeping track of your experiments is one of the main benefits of using dimebox. Using the summary tool, it is easy to tell at a glance what has run and gives some context to your experiments:
