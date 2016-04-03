@@ -13,7 +13,7 @@ function structuredJobs(jobs) {
 }
 
 const tmpl = require('../lib/machine/debug').template
-const exp = { name: '-', wall: '-', desc: '-', p: [1, 2, 4, 8, 16], optargs: {k: [0, 1], q: ['a', 'b', 'c']} }
+const exp = { name: '-', wall: '-', desc: '-', depth:[1], p: [1, 2, 4, 8, 16], optargs: {k: [0, 1], q: ['a', 'b', 'c']} }
 const epoch = '20160101-000000'
 
 describe('trivial generateJobs', function(){
@@ -46,9 +46,20 @@ describe('simple generateJobs', function(){
      js.map(j => {
        const job = j.contents
        const filename = j.filename.split('-')
-       const pFromFile = Number(filename[filename.length-1].split('.')[0])
+       const pFromFile = Number(filename[filename.length-2].split('.')[0])
        expect(job.p).to.be.equal(pFromFile)
        expect(job.p).to.be.oneOf(exp.p)
+     });
+  });
+
+  it('depth is same as the filename and exp', function(){
+     const js = structuredJobs(jobs.generateJobs(tmpl, exp, epoch))
+     js.map(j => {
+       const job = j.contents
+       const filename = j.filename.split('-')
+       const dFromFile = Number(filename[filename.length-1].split('.')[0])
+       expect(job.depth).to.be.equal(dFromFile)
+       expect(job.depth).to.be.oneOf(exp.depth)
      });
   });
 })
