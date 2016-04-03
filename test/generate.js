@@ -63,3 +63,31 @@ describe('simple generateJobs', function(){
      });
   });
 })
+
+
+describe('vulcan', function(){
+  const vulcanTemplate = require('../lib/machine/vulcan').template
+
+  it('generated something', function(){
+     const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
+     js.map(j => {
+       const job = j.contents
+       expect(job).to.be.not.empty
+     });
+  });
+
+})
+
+
+describe('rain', function(){
+  const vulcanTemplate = require('../lib/machine/rain').template
+
+  it('generated something', function(){
+     const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
+     js.map(j => {
+       const job = j.contents
+       expect(job).to.be.not.empty
+     });
+  });
+
+})
