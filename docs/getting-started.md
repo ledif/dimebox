@@ -231,4 +231,4 @@ workspace:
 cmds:
   foo: ./myexe
   ```
-When using ```dimebox generate```, separate directories will be created in ```experiments/workspaces/$epoch/$jobname```. In each directory, symbolic links will be created for executables listed in the ```links``` field, along with a symbolic link to the top-level experiments directory for output to be correctly written. When each job is run, the first thing it will do is change directory do its own workspace and execute the program in isolation.
+When using ```dimebox generate```, separate directories will be created in ```experiments/workspaces/$epoch/$jobname```. In each directory, symbolic links will be created for executables listed in the ```links``` field, along with a symbolic link to the top-level experiments directory for output to be correctly written. When each job is run, the first thing it will do is change directory to its own workspace and execute the program in isolation.
