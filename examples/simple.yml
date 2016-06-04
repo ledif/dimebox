@@ -1,7 +1,0 @@
-name: heat
-desc: Heat equation for various processor counts
-
-p: [1, 2, 4, 8, 16, 32]
-
-cmds:
-  heat: ./heat
