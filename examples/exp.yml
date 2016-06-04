@@ -1,0 +1,7 @@
+name: exp
+desc: Testing my program on 1-32 processors
+
+p: [1, 2, 4, 8, 16, 32]
+
+cmds:
+  myexe: ./myexe
