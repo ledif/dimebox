@@ -35,7 +35,7 @@ A question you may have is "I already have my own scripts; why do I need this cr
   
 Example
 ---
-[![demo](https://asciinema.org/a/ews0xclbktygqt0fmwmtu2qoa.png)](https://asciinema.org/a/ews0xclbktygqt0fmwmtu2qoa?autoplay=1)
+[![demo](https://asciinema.org/a/eis73w2p01ymu5is7nhj8rad7.png)](https://asciinema.org/a/eis73w2p01ymu5is7nhj8rad7?autoplay=1)
 
 
 Usage
