@@ -2,9 +2,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.2.0] - 2016-06-16
 ### Added
 - Subcommand `watch`, which allows for a user to monitor the status of an epoch
+- `parse` now allows for aggregation of numeric values with the same key into mean, stddev and other statistics with the --agg flag. Combined with the `trials` parameter in the expfile, this allows for multiple runs to be aggregated and parsed into one output.
+- Adding richer symbolic epoch syntax (e.g., HEAD~~ is the third to last experiment).
+- Version control information is now captured for SVN repos as well as git
 - Metadata for result files are now stored in `$epoch/.md$ as structured YAML data. 
 
 ### Changed
