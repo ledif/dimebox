@@ -23,6 +23,6 @@ describe('statistics for 10 values', function(){
      expect(st.max).to.be.closeTo(7.874558444600552, epsilon)
      expect(st.stddev).to.be.closeTo(2.46874, epsilon)
      expect(st.conf).to.be.closeTo(2.22814*(2.46874/Math.sqrt(10)), epsilon)
-     
+     expect(st.samples).to.eql(10)
   });
 })
