@@ -30,17 +30,17 @@ _dimebox()
         COMPREPLY=( $(compgen -f -X '!*.yml' -- "${cur_word}") )
         ;;
       summary)
-        COMPREPLY=( $(compgen -W "$(ls -d experiments/jobs/2* | xargs -n1 basename) HEAD" -- "${cur_word}") "${COMPREPLY[@]}")
+        COMPREPLY=( $(compgen -W "$(\ls -d experiments/jobs/2* | xargs -n1 basename) HEAD" -- "${cur_word}") "${COMPREPLY[@]}")
         ;;
       submit | parse | watch | rm | resolve)
-        COMPREPLY=( $(compgen -W "$(ls -d experiments/jobs/2* | xargs -n1 basename) HEAD" -- "${cur_word}") )
+        COMPREPLY=( $(compgen -W "$(\ls -d experiments/jobs/2* | xargs -n1 basename) HEAD" -- "${cur_word}") )
         ;;
       init | completion)
         # Nothing else can come after but another dimebox command
         return 0
         ;;
       -m | --machine)
-        COMPREPLY=( $(compgen -W "$(ls ${dimebox_dir} | xargs -n1 basename | sed 's/\.[^.]*$//')" -- ${cur_word}) )
+        COMPREPLY=( $(compgen -W "$(\ls ${dimebox_dir} | xargs -n1 basename | sed 's/\.[^.]*$//')" -- ${cur_word}) )
     esac
 
   fi
