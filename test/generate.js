@@ -12,7 +12,7 @@ function structuredJobs(jobs) {
   })
 }
 
-const tmpl = require('../lib/machine/debug').template
+const tmpl = require('../lib/machines/debug').template
 const exp = { name: '-', wall: '-', desc: '-', depth:[1], p: [1, 2, 4, 8, 16], optargs: {k: [0, 1], q: ['a', 'b', 'c'], w:["my string", "your string"]}, cmd: {hello: "./hello"} }
 const epoch = '20160101-000000'
 
@@ -73,7 +73,7 @@ describe('simple generateJobs', function(){
 
 
 describe('vulcan', function(){
-  const vulcanTemplate = require('../lib/machine/vulcan').template
+  const vulcanTemplate = require('../lib/machines/vulcan').template
 
   it('generated something', function(){
      const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
@@ -87,7 +87,7 @@ describe('vulcan', function(){
 
 
 describe('rain', function(){
-  const vulcanTemplate = require('../lib/machine/rain').template
+  const vulcanTemplate = require('../lib/machines/rain').template
 
   it('generated something', function(){
      const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
