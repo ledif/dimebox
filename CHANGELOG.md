@@ -2,6 +2,16 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [UNRELEASED]
+### Added
+- User defaults for all commands can now be read in from $HOME/.dimebox/defaults.yml
+- Custom machine configurations can now be created and placed in $HOME/.dimebox/machines
+- Bash completition script in tools/
+- Dump of machine information when generating jobs in jobs/$epoch/machine.yml
+
+### Changed
+- Cleaner output for `watch` subcommand which includes time of last status update
+
 ## [1.2.0] - 2016-06-16
 ### Added
 - Subcommand `watch`, which allows for a user to monitor the status of an epoch
