@@ -70,6 +70,8 @@ _dimebox()
         COMPREPLY=( $(compgen -f -X '!*.yml' -- "${cur_word}") )
         if [ "${#COMPREPLY[@]}" -eq 0 ]; then
           COMPREPLY=( $(compgen -d -S '/' -- "${cur_word}" ) )
+          compopt -o nospace
+          return 0
         fi
         ;;
       summary)
