@@ -28,6 +28,7 @@
     "lodash": "^4.13.1",
     "loglevel": "^1.4.0",
     "moment": "^2.11.2",
+    "moment.twitter": "0.0.1",
     "node-fs-extra": "^0.8.1",
     "q": "^1.4.1",
     "underscore": "^1.8.3",
