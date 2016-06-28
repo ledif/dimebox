@@ -7,19 +7,20 @@ _dimebox()
   cur_word="${COMP_WORDS[COMP_CWORD]}"
   prev="${COMP_WORDS[COMP_CWORD-1]}"
 
+  if [[ "$COMP_CWORD" -eq 1 && "$cur_word" == -* ]]; then
+    COMPREPLY=( $(compgen -W '--help' -- "${cur_word}") )
+    return 0
+  fi
 
-  if [[ $cur_word == -* ]]; then
-    if [ "$COMP_CWORD" -eq 1 ]; then
-      COMPREPLY=( $(compgen -W '--help' -- "${cur_word}") )
-      return 0
-    fi
+  # Find which subcommand, if any
+  for i in "${COMP_WORDS[@]}"; do
+    echo "$i" | grep -q "\(generate\|summary\|init\|submit\|parse\|watch\|rm\|resolve\|completion\)" || continue
+    comm="$i"
+    break
+  done
 
-    for(( i=COMP_CWORD-1; i>=0; i-- )); do
-      echo "${COMP_WORDS[i]}" | grep -q "\(generate\|summary\|init\|submit\|parse\|watch\|rm\|resolve\|completion\)" || continue
-      comm="${COMP_WORDS[i]}"
-      break
-    done
-
+  # Complete flags/options if the user started one or gave an epoch/experiment
+  if [[ $cur_word = -* || $prev = HEAD* || $prev = *.yml ]]; then
     case "$comm" in
       generate)
         COMPREPLY=( $(compgen -W '-m --machine --vc --no-vc' -- "${cur_word}") )
@@ -41,19 +42,6 @@ _dimebox()
         ;;
     esac
   else
-    comm=("generate" "summary" "init" "submit" "parse" "watch" "rm" "resolve" "completion")
-    # From SO: only consider commands not yet used
-    opts=""
-    for i in "${comm[@]}"; do
-      skip=
-      for j in "${COMP_WORDS[@]}"; do
-        [[ $i = $j ]] && { skip=1; break; }
-      done
-      [[ $skip -eq 1 ]] || opts+=" $i"
-    done
-    COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}" ) )
-
-
     # Search for directories with jobs/2* (dimebox checks for the leading 2)
     epochs=`find . -maxdepth 3 -type d  -wholename './experiments/jobs/2*' -print`
 
@@ -66,6 +54,31 @@ _dimebox()
     [ -n "$epochs" ] && epochs="$(echo $epochs | xargs -n1 basename) HEAD"
 
     case "$prev" in
+      -m | --machine)
+        opts=$(find "${dimebox_dir}/lib/machines" "${HOME}/.dimebox/machines" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
+        COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
+        return 0
+        ;;
+      -p | --parser)
+        opts=$(find "${dimebox_dir}/lib/parsers" "${HOME}/.dimebox/parsers" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
+        COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
+        return 0
+        ;;
+      --interval | --batch)
+        COMPREPLY=()
+        return 0
+        ;;
+      # For when tags are eventually implemented
+      --tag)
+        COMPREPLY=()
+        return 0
+        ;;
+    esac
+
+    case "$comm" in
+      "")
+        COMPREPLY=( $(compgen -W "generate summary init submit parse watch rm resolve completion" -- ${cur_word}) )
+        ;;
       generate)
         COMPREPLY=( $(compgen -f -X '!*.yml' -- "${cur_word}") )
         if [ "${#COMPREPLY[@]}" -eq 0 ]; then
@@ -85,13 +98,6 @@ _dimebox()
         # Nothing else can come after but another dimebox command
         return 0
         ;;
-      -m | --machine)
-        opts=$(find "${dimebox_dir}/lib/machines" "${HOME}/.dimebox/machines" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
-        COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
-        ;;
-      -p | --parser)
-        opts=$(find "${dimebox_dir}/lib/parsers" "${HOME}/.dimebox/parsers" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
-        COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
     esac
   fi
 }
