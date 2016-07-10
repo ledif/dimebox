@@ -32,7 +32,7 @@ _dimebox()
         COMPREPLY=( $(compgen -W '--batch --dry-run -m --machine --stagger --vc --no-dry-run --no-stagger --no-vc' -- "${cur_word}") )
         ;;
       parse)
-        COMPREPLY=( $(compgen -W '-p --parser -t --tag --agg --no-agg' -- "${cur_word}") )
+        COMPREPLY=( $(compgen -W '-p --parser -t --tag --agg --no-agg -s --sortBy' -- "${cur_word}") )
         ;;
       watch)
         COMPREPLY=( $(compgen -W '--interval' -- "${cur_word}") )
@@ -64,7 +64,7 @@ _dimebox()
         COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
         return 0
         ;;
-      --interval | --batch)
+      --interval | --batch | -s | --sortBy)
         COMPREPLY=()
         return 0
         ;;
