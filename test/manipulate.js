@@ -40,10 +40,6 @@ describe('manipulate#select', function() {
      expect(m.rows[2]).to.eql(['!foo', -2])
   });
 
-  it('no cols', function() {
-     expect(() => manipulate(df, {select: ""})).to.throw(Error)
-  });
-
   it('wrong column name', function() {
      expect(() => manipulate(df, {select: "x"})).to.throw(Error)
   });
