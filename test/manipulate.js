@@ -111,4 +111,46 @@ describe('manipulate#order', function() {
      expect(m.rows[2]).to.eql([3, -2, '!foo'])
      expect(m.rows[3]).to.eql([13, -500, '!bar'])
   });
+
+  it('orders before select', function() {
+     const m = manipulate(df2, {select: "a", order: "~b,_c"})
+
+     expect(m.header).to.eql(["a"])
+
+     expect(m.rows[0]).to.eql([2])
+     expect(m.rows[1]).to.eql([2])
+     expect(m.rows[2]).to.eql([3])
+     expect(m.rows[3]).to.eql([13])
+  })
+})
+
+describe('manipulate#filter', () => {
+  it('throw if extraneous identifier', () => {
+    expect(() => manipulate(df2, {filter: "BAD > 1"})).to.throw(Error)
+  });
+  it('throw on bad syntax', () => {
+     expect(() => manipulate(df2, {filter: "`"})).to.throw(Error)
+  });
+
+  it('resolve Math methods', () => {
+     const m = manipulate(df2, {filter: "log(1) == 0"})
+
+     expect(m).to.eql(df2)
+  });
+
+  it('handle column names', () => {
+     const m = manipulate(df2, {filter: "a == 2"})
+     expect(m.header).to.eql(df2.header)
+
+     expect(m.rows.length).to.eql(2)
+     expect(m.rows[0]).to.eql([2, 20, 'a'])
+     expect(m.rows[1]).to.eql([2, 0, 'z'])
+  });
+
+  it('_ prefix should be optional', () => {
+     const m = manipulate(df, {filter: "d == 2"})
+     expect(m.header).to.eql(df.header)
+     expect(m.rows.length).to.eql(1)
+     expect(m.rows[0]).to.eql([10.1,-2,'!foo',2])
+  });
 })
