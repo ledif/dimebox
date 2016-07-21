@@ -2,15 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [UNRELEASED]
+## [1.3.0] 2016-07-21
 ### Added
+- Subcommand `kill`, which allows a user to cancel all submitted jobs for an epoch
 - User defaults for all commands can now be read in from $HOME/.dimebox/defaults.yml
+- `parse` now has options to select specific columns, sort rows or filter rows
 - Custom machine configurations can now be created and placed in $HOME/.dimebox/machines
+- Support for machine Edison (edison.nersc.gov)
 - Bash completition script in tools/
 - Dump of machine information when generating jobs in jobs/$epoch/machine.yml
 
 ### Changed
+- Result files can contain more than one observation with the dbx.obs keyword, allowing for tidy data when using `parse`.
 - Cleaner output for `watch` subcommand which includes time of last status update
+- Turned off sample job display in `summary` by default to cut down on noise
 
 ## [1.2.0] - 2016-06-16
 ### Added
