@@ -81,7 +81,7 @@ foo	16	0	10	1024	0.214496	0.00979
 
 A program may want to record multiple observations per run. In this case, the `dbx.obs` keyword can be used to distinguish between multiple observations. For example, consider that the updated result file contains the following content:
 
-```
+```json
 $ cat foo-0-10-16
 dbx.kv size: 1024
 dbx.obs {"algo": "exact", "time": 0.650415, "error": 0}
