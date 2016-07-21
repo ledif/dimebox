@@ -84,8 +84,8 @@ A program may want to record multiple observations per run. In this case, the `d
 ```
 $ cat foo-0-10-16
 dbx.kv size: 1024
-dbx.obv {'algo': 'exact', 'time': 0.650415, 'error': 0}
-dbx.obv {'algo': 'approx', 'time': 0.214469, 'error': 0.00979}
+dbx.obs {"algo": "exact", "time": 0.650415, "error": 0}
+dbx.obs {"algo": "approx", "time": 0.214469, "error": 0.00979}
 ```
 
 This program ran two versions of an algorithm: an approximate version and an exact version. The exact version executed in more time with no error while the approximate version finished in less time with some error. If we parse this experiment now, we may expect to see the observations collected as follows:
