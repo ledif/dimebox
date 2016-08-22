@@ -21,6 +21,8 @@
   "homepage": "https://github.com/ledif/dimebox#readme",
   "dependencies": {
     "ansi-escapes": "^1.4.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^3.5.5",
     "chalk": "^1.1.1",
     "check-types": "^6.0.0",
     "cli-table": "^0.3.1",
