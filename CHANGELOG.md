@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.0] 2016-09-20
+### Added
+- Support for raw flags in experiment files that can be passed to job headers or run flags directly.
+
+### Changed
+- Richer interface for `watch` that is more interactive. 
+- Fixed bug with job creation on edison machine
+- Fixed bug where walltime in files were not correctly interpreted as times
+
 ## [1.3.0] 2016-07-21
 ### Added
 - Subcommand `kill`, which allows a user to cancel all submitted jobs for an epoch
