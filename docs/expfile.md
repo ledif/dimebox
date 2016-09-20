@@ -91,6 +91,25 @@ trials: 32
 
 This will run the commands 32 times and the result of each command will be appended to your output file.
 
+Raw headers and flags
+---
+If dimebox doesn't include support for a flag that should be in your job file, it's possible to explicitly specify a flag that should be in a job's header, or called with the `MPIRUN` command:
+
+```yml
+raw:
+  headers: ['--myheader ${p*5}']
+  runFlags: ["-S ${Math.log2(p)}"]
+```
+
+This will result in a job, where p=8, that may include the following:
+
+```
+#PBS --myheader 40
+mpirun -np 8 -S 3 ...
+```
+
+You can evaluate expressions inside of `${}`, where the values of p and depth for a given job are available. 
+
 Prologue and epilogue
 ---
 Commands that happen at the beginning and end of your job can be specified with the prologue and epilogue fields. Example:
