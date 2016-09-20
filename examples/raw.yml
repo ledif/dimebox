@@ -1,0 +1,11 @@
+name: raw-flags
+desc: Showing use cases for raw headers and runFlags
+
+p: [1024]
+
+raw:
+  headers: ['-k', '--myheader ${p*5}']
+  runFlags: ["-S ${Math.log(p)*depth}", "-P l"]
+
+cmds:
+  myexe: ./myexe

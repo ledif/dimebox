@@ -26,6 +26,7 @@
     "chalk": "^1.1.1",
     "check-types": "^6.0.0",
     "cli-table": "^0.3.1",
+    "dot": "^1.0.3",
     "js-yaml": "^3.5.3",
     "lodash": "^4.13.1",
     "loglevel": "^1.4.0",

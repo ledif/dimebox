@@ -72,28 +72,17 @@ describe('simple generateJobs', function(){
 })
 
 
-describe('vulcan', function(){
-  const vulcanTemplate = require('../lib/machines/vulcan').template
+describe('actual machines', function(){
+  const machines = ['vulcan', 'rain', 'edison']
 
   it('generated something', function(){
-     const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
-     js.map(j => {
-       const job = j.contents
-       expect(job).to.be.not.empty
-     });
-  });
-
-})
-
-
-describe('rain', function(){
-  const vulcanTemplate = require('../lib/machines/rain').template
-
-  it('generated something', function(){
-     const js = jobs.generateJobs(vulcanTemplate, exp, epoch)
-     js.map(j => {
-       const job = j.contents
-       expect(job).to.be.not.empty
+     machines.map(m => {
+      const machineTemplate = require('../lib/machines/' + m).template
+       const js = jobs.generateJobs(machineTemplate, exp, epoch)
+       js.map(j => {
+         const job = j.contents
+         expect(job).to.be.not.empty
+       });
      });
   });
 
