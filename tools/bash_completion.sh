@@ -14,7 +14,7 @@ _dimebox()
 
   # Find which subcommand, if any
   for i in "${COMP_WORDS[@]}"; do
-    echo "$i" | grep -q "\(generate\|summary\|init\|submit\|parse\|watch\|rm\|resolve\|completion\)" || continue
+    echo "$i" | grep -q "\(generate\|summary\|init\|submit\|parse\|watch\|rm\|resolve\|completion\|kill\)" || continue
     comm="$i"
     break
   done
@@ -36,6 +36,9 @@ _dimebox()
         ;;
       watch)
         COMPREPLY=( $(compgen -W '--interval' -- "${cur_word}") )
+        ;;
+      kill)
+        COMPREPLY=( $(compgen -W '-m --machine' -- "${cur_word}") )
         ;;
       *)
         return 0
@@ -77,7 +80,7 @@ _dimebox()
 
     case "$comm" in
       "")
-        COMPREPLY=( $(compgen -W "generate summary init submit parse watch rm resolve completion" -- ${cur_word}) )
+        COMPREPLY=( $(compgen -W "generate summary init submit parse watch rm resolve completion kill" -- ${cur_word}) )
         ;;
       generate)
         COMPREPLY=( $(compgen -f -X '!*.yml' -- "${cur_word}") )
