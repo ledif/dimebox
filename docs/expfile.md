@@ -16,11 +16,18 @@ The description field allows the user to give a more detailed description about 
 
 Processor counts
 ---
-This field specifies which processor counts this experiment will use. Example:
+The p field specifies which processor counts this experiment will use. Example:
 ```yml
 p: [1, 2, 4, 8, 16, 32]
 ```
 There will be one job created for each processor count.
+
+One can specify the number of threads for each processor count with the `depth` field (`depthvar` is the environment variable used to specify threads). For example:
+
+```yml
+depth: [1, 2, 4]
+depthvar: OMP_NUM_THREADS
+```
 
 Commands
 ---
