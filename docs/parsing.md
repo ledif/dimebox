@@ -29,6 +29,26 @@ p k time
 2 0 0.05
 ```
 
+Aggregation
+---
+By default, it is assumed that each output file contains only unique keys. Sometimes, however, it is useful to output multiple values of the same metric. For example, we may want to output several observations for time:
+
+```
+$ cat test-0-1
+dbx.kv p: 1
+dbx.kv time: 0.09
+dbx.kv time: 0.092
+dbx.kv time: 0.088
+```
+
+In order to aggregate this information into a mean, we can use the `--agg` flag:
+
+```
+$ dimebox parse --agg HEAD
+p time_mean time_conf
+1 0.09 0.00163
+```
+
 Tags
 ---
 Sometimes, executables output results for what would be considered separate operations. For example, an executable might test two different algorithms. In this case, the outputs can be tagged and parsing will only return results for a given tag.
