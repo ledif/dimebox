@@ -75,3 +75,35 @@ module.exports = line => {
   return {key: s[0], value: s[1]}
 }
 ```
+
+Parser Arguments
+---
+
+You can also customize parsers by providing additional command-line arguments
+to `parse` after the epoch.  For example, say your `HEAD` has a file with the
+given contents
+```
+time: 1.23
+memory = 42
+```
+You can use the other built-in parser, `regex-parser` with something like
+```
+dimebox parse -p regex-parser HEAD '^(time):\s*(.*)$' '^(memory)\s*=\s*(.*)$'
+```
+The  `regex-parser` assumes that you pass it a list of regexes that match the
+key first and then the value. The first regex that matches the line is used.
+
+This feature isn't limited to just `regex-parser`.  Modifying the example above
+to work with any special phrase would look like
+```javascript
+module.exports = (line, args) => {
+  const phrase = args.length > 0 ? args[0] : 'dbx.kv'
+
+  if (!line.match('^'+phrase))
+    return false
+
+  const s = line.replace(phrase, '').split(':')
+  return {key: s[0], value: s[1]}
+}
+```
+
