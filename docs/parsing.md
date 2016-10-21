@@ -93,17 +93,31 @@ dimebox parse -p regex-parser HEAD '^(time):\s*(.*)$' '^(memory)\s*=\s*(.*)$'
 The  `regex-parser` assumes that you pass it a list of regexes that match the
 key first and then the value. The first regex that matches the line is used.
 
-This feature isn't limited to just `regex-parser`.  Modifying the example above
-to work with any special phrase would look like
+This feature isn't limited to just `regex-parser`, but to use these we have to
+export our parser as an object.  Modifying the example above to work with any
+special phrase would look like
 ```javascript
-module.exports = (line, args) => {
-  const phrase = args.length > 0 ? args[0] : 'dbx.kv'
+module.exports = {
 
-  if (!line.match('^'+phrase))
-    return false
+  // This function is called with the user args before we use the parser.
+  // You don't have to provide this function if you don't want to.
+  onInit: args => {
+    this.phrase = args.length > 0 ? args[0] : 'dbx.kv'
+  },
 
-  const s = line.replace(phrase, '').split(':')
-  return {key: s[0], value: s[1]}
+  // You can optionally provide a callback for starting a new file.
+  // Like onInit() this is also optional.
+  onNewFile: file => {},
+
+  // Now we put the parsing code in parseLine()
+  // This is the only function you must have for custom parsers.
+  parseLine: line => {
+    if (!line.match('^'+this.phrase))
+      return false
+
+    const s = line.replace(this.phrase, '').split(':')
+    return {key: s[0], value: s[1]}
+  }
 }
 ```
 
