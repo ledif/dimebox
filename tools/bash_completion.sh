@@ -45,13 +45,22 @@ _dimebox()
         ;;
     esac
   else
-    # Search for directories with jobs/2* (dimebox checks for the leading 2)
-    epochs=`find . -maxdepth 3 -type d  -wholename './experiments/jobs/2*' -print`
+    if [ -d ./experiments/jobs ]; then
+      epochs=`find experiments/jobs/ -maxdepth 1 -type d  -name '2*' -print`
+    elif [ $(basename `pwd`) = 'experiments' -a -d ./jobs ]; then
+      epochs=`find jobs/ -maxdepth 1 -type d  -name '2*' -print`
+    else
+      case "$comm" in
+        "")
+        COMPREPLY=(init)
+        ;;
+        init)
+        COMREPLY=()
+        ;;
+      esac
+      return 0
+    fi
 
-
-    # Did not find epoch directories, check if we are in experiments/
-    [ -z "$epochs" -a $(basename `pwd`) = 'experiments' ] &&
-      epochs=`find . -maxdepth 2 -type d  -wholename './jobs/2*' -print`
 
     # If we found something, pass them through basename and append HEAD
     [ -n "$epochs" ] && epochs="$(echo $epochs | xargs -n1 basename) HEAD"
@@ -80,7 +89,13 @@ _dimebox()
 
     case "$comm" in
       "")
-        COMPREPLY=( $(compgen -W "generate summary init submit parse watch rm resolve completion kill" -- ${cur_word}) )
+        if [[ -z $epochs ]]; then
+          COMPREPLY=(generate)
+        else
+          COMPREPLY=( $(compgen -W "generate summary init submit parse watch rm resolve completion kill" -- ${cur_word}) )
+          [ ${#COMPREPLY[@]} -eq 0 ] &&
+            COMPREPLY=( $(echo "generate summary init submit parse watch rm resolve completion kill" | grep -o "\w\+${cur_word}\w*") )
+        fi
         ;;
       generate)
         COMPREPLY=( $(compgen -f -X '!*.yml' -- "${cur_word}") )
