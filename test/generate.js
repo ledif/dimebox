@@ -1,5 +1,5 @@
 const expect = require('chai').expect,
-      _ = require('underscore'),
+      _ = require('lodash'),
       yaml = require('js-yaml')
       jobs = require('../lib/generate/jobs')
 

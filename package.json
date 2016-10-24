@@ -34,7 +34,6 @@
     "moment.twitter": "git://github.com/pranjaltech/moment.twitter",
     "node-fs-extra": "^0.8.1",
     "q": "^1.4.1",
-    "underscore": "^1.8.3",
     "yargs": "^4.2.0"
   },
   "devDependencies": {
