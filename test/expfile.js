@@ -40,4 +40,25 @@ describe('expfile field validation', function(){
      const check = () => validate(_.assign(badPairargs, base))
      expect(check).to.throw(/not.*same length/i)
   });
+
+  it('should not fail if using weakargs example', function(){
+     const weakargs = { weakargs: '11 + log2(p)' }
+     const check = () => validate(_.assign(weakargs, base))
+     expect(check).not.to.throw
+  });
+  it('should not fail if using a string weakargs', function(){
+     const weakargs = { weakargs: '""+p' }
+     const check = () => validate(_.assign(weakargs, base))
+     expect(check).not.to.throw
+  });
+  it('should fail if weakargs return objects', function(){
+     const objWeakargs = { weakargs: '{ foo: 1}' }
+     const check = () => validate(_.assign(objWeakargs, base))
+     expect(check).to.throw(Error)
+  });
+  it('should fail if weakargs has syntax errors', function(){
+     const badWeakargs = { weakargs: 'return "p' }
+     const check = () => validate(_.assign(badWeakargs, base))
+     expect(check).to.throw(Error)
+  });
 })

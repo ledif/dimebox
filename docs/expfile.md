@@ -87,9 +87,9 @@ pairargs:
 Weak arguments are arguments that depend on the processor count `p`. Example:
 ```yml
 weakargs:
-  scale: 11 + Math.log2(p)
+  scale: 11 + log2(p)
 ```
-This will create a `$scale` argument whose value depends on the value of p. Note that each weakarg is simply a JavaScript expression that will be evaluated during  generation. If there are any errors in this expression, or if it does not generate a number or string, then generation will fail.
+This will create a `$scale` argument whose value depends on the value of p. Note that each weakarg is essentially a JavaScript expression that will be evaluated during  generation. It is preprocessed by appending `Math` or `Number` in front of every identifier that isn't `p`. If there are any errors in this expression, or if it does not generate a number or string, then generation will fail.
 
 Walltime
 ---
