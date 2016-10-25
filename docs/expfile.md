@@ -91,6 +91,14 @@ weakargs:
 ```
 This will create a `$scale` argument whose value depends on the value of p. Note that each weakarg is simply a JavaScript expression that will be evaluated during  generation. If there are any errors in this expression, or if it does not generate a number or string, then generation will fail.
 
+Walltime
+---
+To change the walltime for the jobs in an experiment, use the `wall` keyword:
+
+```yml
+wall: 03:00:00
+```
+
 Queues
 ---
 The q field exists to specify queues for your jobs. Example:
