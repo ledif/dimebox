@@ -13,13 +13,25 @@ function structuredJobs(jobs) {
 }
 
 const tmpl = require('../lib/machines/debug').template
-const exp = { name: '-', wall: '-', desc: '-', depth:[1], p: [1, 2, 4, 8, 16], optargs: {k: [0, 1], q: ['a', 'b', 'c'], w:["my string", "your string"]}, cmd: {hello: "./hello"} }
+const exp = { name: '-', wall: '-', desc: '-', depth:[1], p: [1, 2, 4, 8, 16] , cmd: {hello: "./hello"} }
+const optargs = { optargs: {k: [0, 1], q: ['a', 'b', 'c'], w: ["my string", "your string"]} }
+const pairargs = { pairargs: { a: [0,1,2], b: [20,30,40], c: [100,200,300] } }
 const epoch = '20160101-000000'
 
 describe('trivial generateJobs', function(){
   it('number of jobs equal to product of optargs and p', function(){
-     const j = jobs.generateJobs(tmpl, exp, epoch)
+     const j = jobs.generateJobs(tmpl, _.extend({}, exp, optargs), epoch)
      expect(j).to.have.length(5*2*3*2);
+  });
+
+  it('number of jobs equal to product of length of pairargs and p', function(){
+     const j = jobs.generateJobs(tmpl, _.extend({}, exp, pairargs), epoch)
+     expect(j).to.have.length(5*3);
+  });
+
+  it('number of jobs equal to product of optargs, length of pairargs and p', function(){
+     const j = jobs.generateJobs(tmpl, _.extend({}, exp, optargs, pairargs), epoch)
+     expect(j).to.have.length(5*3*3*2*2);
   });
 
   it('jobs is array of objects', function(){

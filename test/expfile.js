@@ -27,3 +27,17 @@ describe('allowed fields', function(){
      expect(() => validate(exp)).to.throw(Error)
   });
 })
+
+describe('expfile field validation', function(){
+  it('should validate if pairargs are all the same length', function(){
+     const pairargs = { pairargs: { a: [1,2],  b: [1,2], c: [1,2,3] } }
+     const check = () => validate(_.assign(pairargs, base))
+     expect(check).not.to.throw
+  });
+
+  it('should fail to validate if pairargs are not all the same length', function(){
+     const badPairargs = { pairargs: { a: [1,2],  b: [1,2], c: [1,2,3] } }
+     const check = () => validate(_.assign(badPairargs, base))
+     expect(check).to.throw(/not.*same length/i)
+  });
+})

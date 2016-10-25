@@ -43,7 +43,7 @@ In each command, arguments that are specified in ```optargs``` or ```weakargs```
 
 Arguments
 ---
-There are two kinds of arguments in dimebox, optargs and weakargs
+There are three kinds of arguments in dimebox, optargs, pairargs and weakargs
 
 ####optargs
 This field allows the user to specify a matrix of arguments that will be used to create jobs. Example:
@@ -58,6 +58,30 @@ In this example, there are two different arguments, each with 5 possibilities, a
 cmds:
   foo: ./myexe $tau $k
 ```
+###pairargs
+This field allows the user to specify lists of arguments. Unlike `optargs`, the cross product isn't used to combine these arguments. Example:
+
+```yml
+pairargs:
+  n: [1,2,3]
+  m: [4,5,6]
+  s: [7,8,9]
+```
+  This will create only 3 jobs, with `n = 1` and `m = 4` and `s = 7`, `n = 2` and `m = 5` and `s = 8`, etc.
+
+Combining this with `optargs` takes the cartesian product of both. Example:
+
+```yml
+optargs:
+  tau: [1, 16, 64, 256, 4096]
+  k: [0, 1, 2, 4, 8]
+pairargs:
+  n: [1,2,3]
+  m: [4,5,6]
+  s: [7,8,9]
+```
+
+  As stated above, there are 25 different combinations of the `optargs` and 3 for the `pairargs` so there will be 75 jobs created.
 ####weakargs
 
 Weak arguments are arguments that depend on the processor count `p`. Example:
