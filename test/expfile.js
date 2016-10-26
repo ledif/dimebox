@@ -18,7 +18,7 @@ describe('missing required fields', function(){
 
 describe('allowed fields', function(){
   it('field in whitelist', function(){
-    const exp = _.assign({epilogue: "bar"}, base)
+    const exp = _.assign({epilogue: "bar", prologue: "foo"}, base)
      expect(() => validate(exp)).to.not.throw(Error)
   });
 
