@@ -45,7 +45,7 @@ Arguments
 ---
 There are three kinds of arguments in dimebox, optargs, pairargs and weakargs
 
-####optargs
+#### optargs
 This field allows the user to specify a matrix of arguments that will be used to create jobs. Example:
 
 ```yml
@@ -58,7 +58,7 @@ In this example, there are two different arguments, each with 5 possibilities, a
 cmds:
   foo: ./myexe $tau $k
 ```
-###pairargs
+#### pairargs
 This field allows the user to specify lists of arguments. Unlike `optargs`, the cross product isn't used to combine these arguments. Example:
 
 ```yml
@@ -82,7 +82,8 @@ pairargs:
 ```
 
   As stated above, there are 25 different combinations of the `optargs` and 3 for the `pairargs` so there will be 75 jobs created.
-####weakargs
+
+#### weakargs
 
 Weak arguments are arguments that depend on the processor count `p`. Example:
 ```yml
