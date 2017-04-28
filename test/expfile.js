@@ -46,6 +46,11 @@ describe('expfile field validation', function(){
      const check = () => validate(_.assign(weakargs, base))
      expect(check).not.to.throw
   });
+  it('should not fail if using depth', function(){
+     const weakargs = { weakargs: '11 + log2(depth)' }
+     const check = () => validate(_.assign(weakargs, base))
+     expect(check).not.to.throw
+  });
   it('should not fail if using a string weakargs', function(){
      const weakargs = { weakargs: '""+p' }
      const check = () => validate(_.assign(weakargs, base))
