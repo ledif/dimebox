@@ -67,12 +67,12 @@ _dimebox()
 
     case "$prev" in
       -m | --machine)
-        opts=$(find "${dimebox_dir}/lib/machines" "${HOME}/.dimebox/machines" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
+        opts=$(find "${dimebox_dir}/lib/machines" "${HOME}/.dimebox/machines" -readable -name '*.js'  2>/dev/null | perl -pe 's@(^.*?machines/|\.js$)@@g')
         COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
         return 0
         ;;
       -p | --parser)
-        opts=$(find "${dimebox_dir}/lib/parsers" "${HOME}/.dimebox/parsers" -readable -name '*.js' -exec basename {} '.js' \; 2>/dev/null)
+        opts=$(find "${dimebox_dir}/lib/parsers" "${HOME}/.dimebox/parsers" -readable -name '*.js'  2>/dev/null | perl -pe 's@(^.*?parsers/|\.js$)@@g')
         COMPREPLY=( $(compgen -W "$opts" -- "${cur_word}") )
         return 0
         ;;
