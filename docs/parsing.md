@@ -63,7 +63,7 @@ dimebox parse HEAD --tag=mytag
 Parsers
 ---
 
-Parsing can be customized to extract information from output files. A parser is a small JavaScript module that exports a single a function that receives a line from a file and outputs a key-value pair for that line, or false if that line does not contain any useful information.
+Parsing can be customized to extract information from output files. A parser can be a small JavaScript module that exports a single a function that receives a line from a file and outputs a key-value pair for that line, or false if that line does not contain any useful information.
 
 A small example that extracts lines that contain the special phrase ```dbx.kv``` would look like the following:
 ```javascript
@@ -76,43 +76,78 @@ module.exports = line => {
 }
 ```
 
-Parser Arguments
----
+### Parser Return Value
+In our example, we just return a key-value pair, but there are two other
+possible return types (beyond `return false` for no data).
 
-You can also customize parsers by providing additional command-line arguments
-to `parse` after the epoch.  For example, say your `HEAD` has a file with the
-given contents
+First consider the following types:
+```typescript
+type kv  = {key: string, value: string | number, tag?: string}
+type obs = {kvs: (string | number)[][], tag?: string}
+```
+
+|Return type | Description|
+|---|---|
+|```kv```| A single key-value pair with an optional tag.|
+|```obs```| An [observation](terminology.md#observation), where ```kvs``` is an array of `[key,value]` arrays. See [here](../lib/parsers/default-key-value.js#L33) for an example.|
+|```kv[]```| An array of key-value pairs. Use this if there is more than one data point per line but it is not a standalone observation. |
+
+### Parser Objects
+
+A parser can also be written as a Javascript module that exports an object.
+This way the parser can read any additional command-line arguments to `parse`
+after the epoch.  Let's look at the the other built-in parser, `regex-parser`,
+as an example of what this lets you do. For this example, assume your `HEAD`
+has an output file with the given contents.
+
 ```
 time: 1.23
 memory = 42
 ```
-You can use the other built-in parser, `regex-parser` with something like
+You can use `regex-parser` with something like
 ```
 dimebox parse -p regex-parser HEAD '^(time):\s*(.*)$' '^(memory)\s*=\s*(.*)$'
 ```
 The  `regex-parser` assumes that you pass it a list of regexes that match the
 key first and then the value. The first regex that matches the line is used.
+The source code for `regex-parser` can be found [here](../lib/parsers/regex-parser.js).
 
-This feature isn't limited to just `regex-parser`, but to use these we have to
-export our parser as an object.  Modifying the example above to work with any
-special phrase would look like
+#### Additional Functions
+
+In addition to using command-line arguments, you can customize the parser behavior
+by defining the following functions
+
+|Function name | Description|
+|---|---|
+| ```onInit(string[])```  | Initialize the parser based on any command-line arguments. |
+| ```onNewFile(string)``` | Given a relative filename, perform any cleanup or initialization before starting on a new file.|
+| ```parseLine(string)``` | **Required**. Return a value for the line. See [above](#parser-return-value) for more details.|
+
+Now let's assume we have a program that outputs a special header before any data of interest.
+Modifying the example above to work with any special phrase would look like:
 ```javascript
 module.exports = {
 
   // This function is called with the user args before we use the parser.
   // You don't have to provide this function if you don't want to.
   onInit: args => {
-    this.phrase = args.length > 0 ? args[0] : 'dbx.kv'
+    this.startString = args.length > 0 ? args[0] : 'START OF OUTPUT'
+    this.phrase      = args.length > 1 ? args[1] : 'dbx.kv'
   },
 
   // You can optionally provide a callback for starting a new file.
-  // Like onInit() this is also optional.
-  onNewFile: file => {},
+  // Like onInit() this is also optional but it's useful to reset/init parser state.
+  onNewFile: file => {
+    this.seenStart = false
+  },
 
-  // Now we put the parsing code in parseLine()
   // This is the only function you must have for custom parsers.
+  // In this example, we only return data if we've seen the start string and it
+  // matches our special phrase, e.g. 'dbx.kv'
   parseLine: line => {
-    if (!line.match('^'+this.phrase))
+    if (line.indexOf(this.startString) != -1)
+      this.seenStart = true
+    if (!this.seenStart || !line.match('^'+this.phrase))
       return false
 
     const s = line.replace(this.phrase, '').split(':')
@@ -120,4 +155,3 @@ module.exports = {
   }
 }
 ```
-
