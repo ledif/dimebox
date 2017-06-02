@@ -39,14 +39,14 @@ describe('trivial generateJobs', function(){
      const j = jobs.generateJobs(tmpl, exp, expObjs, epoch)
      expect(j).to.be.a('array');
      
-     j.map(job => {
+     j.forEach(job => {
        expect(job).to.have.all.keys('filename', 'contents')
      })
   });
 
   it('jobs have filenames and are not empty', function(){
      const j = jobs.generateJobs(tmpl, exp, expObjs, epoch)
-     j.map(job => {
+     j.forEach(job => {
        expect(job.filename).to.have.length.least(1)
        expect(job.contents).to.have.length.least(1)
      })
@@ -54,7 +54,7 @@ describe('trivial generateJobs', function(){
 
   it('optargs with spaces do not have spaces in filename', function(){
      const j = jobs.generateJobs(tmpl, exp, expObjs, epoch)
-     j.map(job => {
+     j.forEach(job => {
        expect(job.filename).to.not.contain(" ")
      })
   });
@@ -63,7 +63,7 @@ describe('trivial generateJobs', function(){
 describe('simple generateJobs', function(){
   it('p is same as the filename and exp', function(){
      const js = structuredJobs(jobs.generateJobs(tmpl, exp, expObjs, epoch))
-     js.map(j => {
+     js.forEach(j => {
        const job = j.contents
        const filename = j.filename.split('-')
        const pFromFile = Number(filename[filename.length-2].split('.')[0])
@@ -74,7 +74,7 @@ describe('simple generateJobs', function(){
 
   it('depth is same as the filename and exp', function(){
      const js = structuredJobs(jobs.generateJobs(tmpl, exp, expObjs, epoch))
-     js.map(j => {
+     js.forEach(j => {
        const job = j.contents
        const filename = j.filename.split('-')
        const dFromFile = Number(filename[filename.length-1].split('.')[0])
@@ -89,10 +89,10 @@ describe('actual machines', function(){
   const machines = ['vulcan', 'rain', 'edison']
 
   it('generated something', function(){
-     machines.map(m => {
+     machines.forEach(m => {
       const machineTemplate = require('../lib/machines/' + m).template
        const js = jobs.generateJobs(machineTemplate, exp, expObjs, epoch)
-       js.map(j => {
+       js.forEach(j => {
          const job = j.contents
          expect(job).to.be.not.empty
        });
