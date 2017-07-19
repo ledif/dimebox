@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.5.0] 2017-07-19
+### Added
+- New `pairargs` keyword for experiment specification which allows argument combinations
+  to be pairwise  instead of a cross-product.
+- New `prologue` keyword for experiment specification which can run arbitrary commands
+  when a job starts
+- User-defined parsing can now be objects with various helper functions (`onInit`, `onNewFile`, `parseLine`).
+- New regex parser that can use command line options to specify what to parse as a regular expression
+- The output of `dimebox parse` can be specified to be either TSV or JSON
+
+### Changed
+- Improved SVN version control extraction
+- `watch` will no longer open result files that do not exist
+- The `weakargs` specification uses the same eval code as filter
+- The `weakargs` specification can now use the `$depth` variable
+
+### Bugfixes
+- Fixed issue where batch size was not taken into account for stagger
+- Local machine now uses bash instead of sh
+- Fixed width issue with `dimebox summary`
+
 ## [1.4.0] 2016-09-20
 ### Added
 - Support for raw flags in experiment files that can be passed to job headers or run flags directly.
