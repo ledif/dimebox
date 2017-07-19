@@ -27,6 +27,7 @@
     "check-types": "^6.0.0",
     "cli-table": "^0.3.1",
     "dot": "^1.0.3",
+    "inquirer": "^3.2.0",
     "js-yaml": "^3.5.3",
     "lodash": "^4.13.1",
     "loglevel": "^1.4.0",
@@ -34,6 +35,7 @@
     "moment.twitter": "git://github.com/pranjaltech/moment.twitter",
     "node-fs-extra": "^0.8.1",
     "q": "^1.4.1",
+    "uuid": "^3.1.0",
     "yargs": "^4.2.0"
   },
   "devDependencies": {
