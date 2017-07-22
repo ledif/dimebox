@@ -1,5 +1,3 @@
-"use strict"
-
 const  _   = require('lodash'),
      log  = require('loglevel')
 
@@ -8,7 +6,7 @@ const  _   = require('lodash'),
 // HEAD is first item in the list
 // HEAD~~ is the third item in the list
 // HEAD~3 is the fourth item in the list
-module.exports = function(epoch, epochs) {
+export default function(epoch: string, epochs: string[]) {
   // Passed in a concrete epoch
   if (!epoch.match(/^HEAD/))
     return epoch;

@@ -1,5 +1,7 @@
-const expect = require('chai').expect,
-      resolve = require('../lib/util/epochs/resolve')
+import resolve from '../lib/util/epochs/resolve';
+
+import { expect } from 'chai';
+import 'mocha';
 
 const epochs = ['a','b','c','d','e','f','g']
 
