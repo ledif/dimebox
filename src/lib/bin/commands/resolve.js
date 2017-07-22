@@ -1,6 +1,6 @@
 "use strict"
 
-const resolve = require('../../resolve'),
+const resolve = require('../../resolve').default,
       log     = require('loglevel'),
       guard   = require('../../util/validate')
 
