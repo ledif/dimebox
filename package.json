@@ -4,6 +4,7 @@
   "description": "",
   "main": "bin/dimebox",
   "scripts": {
+    "build": "./node_modules/.bin/tsc --project . && mkdir build/bin && cp src/bin/dimebox build/bin",
     "test": "./node_modules/.bin/mocha"
   },
   "bin": {
@@ -40,7 +41,9 @@
     "yargs": "^8.0.2"
   },
   "devDependencies": {
+    "@types/node": "^8.0.15",
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "typescript": "^2.4.2"
   }
 }
