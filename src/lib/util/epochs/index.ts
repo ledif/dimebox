@@ -1,4 +1,4 @@
-"use strict"
+import resolve from './resolve';
 
 const fs      = require('fs'),
       path    = require('path'),
@@ -6,7 +6,6 @@ const fs      = require('fs'),
       log     = require('loglevel'),
       yaml    = require('js-yaml'),
       moment  = require('moment-twitter'),
-      resolve = require('./resolve'),
       dirs    = require('../dirs')
 
 // Insert all of the results from the input array to the output array
@@ -17,7 +16,7 @@ function contributeAll(output, input, state) {
       state: state,
       modified: r.modified,
       name: r.name
-    }) 
+    })
   })
 }
 
@@ -38,35 +37,38 @@ function filesInDirectory(dir)
   });
 }
 
+/**
+ * Resolve a symbolic epoch (e.g., HEAD) to a concrete epoch
+ * @param epoch {String} A potentially symbolic epoch
+ */
+function resolveEpoch(epoch: string): string {
+  const epochs = fs.readdirSync(dirs.jobs()).sort().reverse()
+    
+  let resolved = ""
+  try {
+    resolved = resolve(String(epoch), epochs)
+  } catch(e) {
+    log.error("Error:", e.message)
+    process.exit(1)
+  }
+
+  // Make sure it's actually an epoch now
+  if (resolved[0] != '2') {
+    log.error(`Error: ${epoch} is not a valid name for an epoch.`)
+    process.exit(1)
+  }
+
+  // Check if it resolved to something that exists
+  if (!fs.existsSync(dirs.jobs(resolved))) {
+    log.error(`Error: epoch ${resolved} does not exist.`)
+    process.exit(1)
+  }
+
+  return resolved
+}
+
 module.exports = {
-  // Resolve a symbolic epoch (e.g., HEAD) to a concrete epoch
-  // If it cannot be resolved, the program exits.
-  resolve: function(epoch) {
-    const epochs = fs.readdirSync(dirs.jobs()).sort().reverse()
-    
-    let resolved = null
-    
-    try {
-      resolved = resolve(String(epoch), epochs)
-    } catch(e) {
-      log.error("Error:", e.message)
-      process.exit(1)
-    }
-
-    // Make sure it's actually an epoch now
-    if (resolved[0] != '2') {
-      log.error(`Error: ${epoch} is not a valid name for an epoch.`)
-      process.exit(1)
-    }
-
-    // Check if it resolved to something that exists
-    if (!fs.existsSync(dirs.jobs(resolved))) {
-      log.error(`Error: epoch ${resolved} does not exist.`)
-      process.exit(1)
-    }
-
-    return resolved
-  },
+  resolve: resolveEpoch,
 
   /**
    * @brief Retrieve all of the activies of this experiment.

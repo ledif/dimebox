@@ -1,7 +1,6 @@
-"use strict"
+import resolve from '../../resolve';
 
-const resolve = require('../../resolve').default,
-      log     = require('loglevel'),
+const log     = require('loglevel'),
       guard   = require('../../util/validate')
 
 module.exports = {

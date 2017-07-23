@@ -6,7 +6,7 @@ const  _   = require('lodash'),
 // HEAD is first item in the list
 // HEAD~~ is the third item in the list
 // HEAD~3 is the fourth item in the list
-export default function(epoch: string, epochs: string[]) {
+export default function(epoch: string, epochs: string[]): string {
   // Passed in a concrete epoch
   if (!epoch.match(/^HEAD/))
     return epoch;

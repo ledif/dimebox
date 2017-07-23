@@ -1,11 +1,8 @@
-'use strict'
-
 const log = require('loglevel'),
       epochUtils = require('./util/epochs')
 
-module.exports = function(epoch) {
+export default function(epoch: string) {
   const resolved = epochUtils.resolve(epoch)
 
   log.info(resolved)
 }
-

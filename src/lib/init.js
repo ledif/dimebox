@@ -16,7 +16,7 @@ module.exports = function() {
     const dirs = ['experiments/jobs', 'experiments/results', 'experiments/metadata']
     dirs.forEach(dir => { fse.mkdirp(dir); })
 
-    const exampleFilename = path.resolve(__dirname, '../examples/exp.yml');
+    const exampleFilename = path.resolve(__dirname, '../../examples/exp.yml');
     fse.copy(exampleFilename, './experiments/exp.yml')
     log.debug(`Copied ${exampleFilename}`)
 
