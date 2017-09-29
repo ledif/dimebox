@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.6.0] 2017-09-29
+### Added
+- Support for hosted dimebox service https://dimebox.xyz.
+- Support for the Cori machine.
+
+### Changed
+- Internal restructuring of CLI commands
+
 ## [1.5.0] 2017-07-19
 ### Added
 - New `pairargs` keyword for experiment specification which allows argument combinations
