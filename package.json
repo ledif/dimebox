@@ -33,6 +33,7 @@
     "loglevel": "^1.4.0",
     "moment": "^2.11.2",
     "moment.twitter": "git://github.com/pranjaltech/moment.twitter",
+    "n-readlines": "^0.2.8",
     "node-fs-extra": "^0.8.1",
     "q": "^1.4.1",
     "request": "^2.72.0",
