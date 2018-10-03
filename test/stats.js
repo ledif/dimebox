@@ -26,3 +26,15 @@ describe('statistics for 10 values', function(){
      expect(st.samples).to.eql(10)
   });
 })
+
+describe('statistics for 1 value', function(){
+  it('simple stats', function(){
+     const st = stats([7])
+     expect(st.mean).to.be.closeTo(7, epsilon)
+     expect(st.min).to.be.closeTo(7, epsilon)
+     expect(st.max).to.be.closeTo(7, epsilon)
+     expect(st.stddev).to.be.closeTo(0, epsilon)
+     expect(st.conf).to.be.closeTo(0, epsilon)
+     expect(st.samples).to.eql(1)
+  });
+})
